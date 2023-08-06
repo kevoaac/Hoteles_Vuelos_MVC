@@ -169,6 +169,38 @@ public class Crud {
 		return user;
 	}
 	//-----------------------------------------------------
+        
+        	public Usuario leerUsuario(String correo) throws SQLException {
+		ResultSet resultados = null;
+		Usuario user = new Usuario();
+
+		String sql = null;
+		estadoOP = false;
+		connection = obtenerConexion();
+
+		try {
+			sql = "SELECT * FROM usuarios WHERE correo_electronico = ?";
+			sentencia = connection.prepareStatement(sql);
+			sentencia.setString(1, correo);
+
+			resultados = sentencia.executeQuery();
+
+			if (resultados.next()) {
+				connection.setAutoCommit(false);
+
+				user.setIdUsuario(resultados.getInt(1));
+				user.setNombre(resultados.getString(2));
+				user.setApellido(resultados.getString(3));
+				user.setCorreoElectronico(resultados.getString(4));
+				user.setContrasenia(resultados.getString(5));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+	//-----------------------------------------------------
 	//---------------HABITACION----------------------
 	public Habitacion leerHabitacion(String pais) throws SQLException {
 		ResultSet resultados = null;

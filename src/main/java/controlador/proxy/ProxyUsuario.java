@@ -24,8 +24,8 @@ public ProxyUsuario() {
 	}
 
 	@Override
-	public void iniciarSesion(String correo, String contrasenia) {
-		usuarioReal.iniciarSesion(correo, contrasenia);		
+	public boolean iniciarSesion(String correo, String contrasenia) {
+                return usuarioReal.iniciarSesion(correo, contrasenia);	
 	}
 
 	@Override

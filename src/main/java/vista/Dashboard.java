@@ -3,7 +3,7 @@ package vista;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
-import controlador.Logica.Logica;
+import controlador.Logica.ArmarReserva;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.SQLException;
@@ -24,9 +24,6 @@ import vista.views.*;
  */
 public class Dashboard extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
     public Dashboard() {
         initComponents();
         InitStyles();//Con este metodo llamamos a los estilos que usaremos para cada componente.botones, label, etc
@@ -43,11 +40,9 @@ public class Dashboard extends javax.swing.JFrame {
         destinoLB.putClientProperty("FlatLaf.style", "font: bold $h2.regular.font");
         destinoLB.setForeground(Color.gray);
 
-
-
     }
     private void InitContent(){
-        ShowPanel(new Bienvenida());
+        ShowPanel(new PanelBienvenida());
     }
     public static void ShowPanel(JPanel p){
         p.setSize(883, 650);
@@ -232,13 +227,13 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBTNActionPerformed
-        ShowPanel(new Principal());
+        ShowPanel(new PanelVuelos());
         String origen = (String) origenCB.getSelectedItem();
         String destino = (String) destinoCB.getSelectedItem();
         Crud c = new Crud();
         List<Vuelo> lista;
 
-        DefaultTableModel model = (DefaultTableModel) Principal.jTableVuelos.getModel();
+        DefaultTableModel model = (DefaultTableModel) PanelVuelos.jTableVuelos.getModel();
 
         
         try {
@@ -247,6 +242,8 @@ public class Dashboard extends javax.swing.JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        
         
         
     }//GEN-LAST:event_buscarBTNActionPerformed

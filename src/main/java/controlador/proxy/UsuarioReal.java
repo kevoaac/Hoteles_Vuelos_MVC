@@ -63,7 +63,7 @@ private String generarCaptcha() {
 
 
   @Override
-public void iniciarSesion(String correo, String contrasenia) {
+public boolean iniciarSesion(String correo, String contrasenia) {
     String correoI = correo;
     String contraseniaR = contrasenia;    
     String sql = "SELECT * FROM usuarios WHERE correo_electronico = ?";
@@ -85,6 +85,8 @@ public void iniciarSesion(String correo, String contrasenia) {
                         JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso. ¡Bienvenido!");
                         // CONECTAMOS CON LA INTERFAZ:
                         
+                        return true;
+                        
                         
                     } else {
                         JOptionPane.showMessageDialog(null, "CAPTCHA incorrecto. Por favor, inténtelo nuevamente.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -98,6 +100,8 @@ public void iniciarSesion(String correo, String contrasenia) {
         } else {
             JOptionPane.showMessageDialog(null, "Su cuenta no está registrada. Por favor, regístrese primero.");
         }
+        
+        
         resultados.close();
     } catch (SQLException e) {
         e.printStackTrace();
@@ -110,6 +114,7 @@ public void iniciarSesion(String correo, String contrasenia) {
             }
         }
     }
+    return false;
 }
 
 

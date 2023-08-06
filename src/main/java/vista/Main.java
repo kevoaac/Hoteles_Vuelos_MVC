@@ -4,11 +4,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 import conexion.Conexion;
+import java.time.LocalDate;
 import modelo.*;
 public class Main {
 public static void main(String[] args) throws SQLException {
 	Conexion.getConnection();
-    //Crud operacion = new Crud();
+    Crud operacion = new Crud();
     /*
      * OJO YA HAY VALORES QUE SE INGRESARON DESDE MYSQL POR ENDE PRIMERO QUIERO
      * VER SI LEE TODA LA INFO Y LUEGO DE UNA EN UNA, Y ASI IR PROBANDO PARA QUE FUNCIONE
@@ -26,6 +27,9 @@ public static void main(String[] args) throws SQLException {
     //System.out.println(operacion.leerVuelo(4));
     //System.out.println(operacion.leerHabitacion(4));
     //System.out.println(operacion.leerReserva(4));
+    
+    operacion.crearReserva(new Reserva(999, 11, 11, 11, LocalDate.now()));
+    
 }
 }
 

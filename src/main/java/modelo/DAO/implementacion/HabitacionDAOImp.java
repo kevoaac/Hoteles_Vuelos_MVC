@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo.DAO.implementacion;
 
 import java.sql.PreparedStatement;
@@ -10,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Conexion;
-import modelo.Crud;
 import modelo.DAO.interfaces.HabitacionDAO;
 import modelo.Habitacion;
 

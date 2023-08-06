@@ -1,9 +1,6 @@
 package controlador.Logica;
 
 import java.time.LocalDate;
-import modelo.Reserva;
-import modelo.Usuario;
-import modelo.Vuelo;
 
 /**
  *
@@ -70,13 +67,5 @@ public class ArmarReserva {
     public void setFechaReserva(LocalDate fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
-
-
-
-    
-    
-    
-
-
 
 }

@@ -4,7 +4,6 @@
  */
 package vista;
 
-import vista.Login;
 import controlador.proxy.ProxyUsuario;
 
 /**

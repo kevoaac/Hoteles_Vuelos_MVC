@@ -1,19 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista;
+
 
 import controlador.Logica.ArmarReserva;
 import java.awt.Color;
 import controlador.proxy.ProxyUsuario;
-import java.awt.BorderLayout;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPanel;
-import modelo.Crud;
-import vista.Dashboard;
+import modelo.DAO.implementacion.UsuarioDAOImp;
 
 /**
  *
@@ -139,7 +133,7 @@ public class Login extends javax.swing.JFrame {
         TextPass.setText("CONTRASEÑA");
 
         TextUser.setFont(new java.awt.Font("Roboto Black", 2, 15)); // NOI18N
-        TextUser.setText("USUARIO");
+        TextUser.setText("CORREO");
 
         back.setBackground(new java.awt.Color(255, 198, 0));
         back.setFont(new java.awt.Font("Roboto Medium", 3, 28)); // NOI18N
@@ -156,11 +150,16 @@ public class Login extends javax.swing.JFrame {
         Iuser.setBackground(new java.awt.Color(255, 198, 0));
         Iuser.setFont(new java.awt.Font("Roboto Light", 2, 16)); // NOI18N
         Iuser.setForeground(new java.awt.Color(153, 153, 153));
-        Iuser.setText("Ingrese su nombre de usuario");
+        Iuser.setText("Ingrese su correo electrónico");
         Iuser.setBorder(null);
         Iuser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 IuserMousePressed(evt);
+            }
+        });
+        Iuser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IuserActionPerformed(evt);
             }
         });
 
@@ -286,22 +285,19 @@ public class Login extends javax.swing.JFrame {
             //oculatar ventala login
             this.setVisible(false);
             //Guardar datos para la reserva------------------------
-            Crud c = new Crud();
+            UsuarioDAOImp usuarioCRUD = new UsuarioDAOImp();
             ArmarReserva reservaSingleton = ArmarReserva.obtenerInstancia();
             //-----------------------------------------------------
             
             try {
-                System.out.println("\nASIGNANDO ID USUARIO A RESERVA\n");
-                reservaSingleton.setIdUsuario(c.leerUsuario(correo).getIdUsuario());
-                //reservaSingleton.setIdUsuario(1);
-                System.out.println("\n\nUsuario Valores:" +c.leerUsuario(correo) );
-                System.out.println("valor idUsuario: "+ c.leerUsuario(correo).getIdUsuario());////////PRUEBAS
+                //Guardar Id de usuario que inicio sesion
+                reservaSingleton.setIdUsuario(usuarioCRUD.leer(correo).getIdUsuario());
             } catch (SQLException ex) {
                 System.out.println(" <<<ERROR ASIGNANDO ID USUARIO");
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            //Mostrar ventana Dashboard 
+            //Mostrar JFrame Dashboard 
             Dashboard db = new Dashboard();
             db.setVisible(true);  
         }
@@ -322,6 +318,10 @@ public class Login extends javax.swing.JFrame {
     // Ocultar la ventana Login
     this.setVisible(false);
     }//GEN-LAST:event_btnRegistroMouseClicked
+
+    private void IuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IuserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IuserActionPerformed
 
     /**
      * @param args the command line arguments

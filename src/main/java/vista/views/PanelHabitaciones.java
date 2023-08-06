@@ -1,22 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package vista.views;
 
 import controlador.Logica.ArmarReserva;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPanel;
-import modelo.Crud;
-import modelo.Habitacion;
+import modelo.DAO.implementacion.ReservaDAOImp;
+import modelo.DAO.interfaces.ReservaDAO;
 import modelo.Reserva;
 import vista.Dashboard;
-import static vista.views.PanelVuelos.jTableVuelos;
 
 /**
  *
@@ -32,8 +25,7 @@ public class PanelHabitaciones extends javax.swing.JPanel {
         InitStyles();
     }
 
-    
-    private void InitStyles(){
+    private void InitStyles() {
         tituloLB.putClientProperty("FlatLaf.style", "font: 110% bold $h1.regular.font");
         tituloLB.setForeground(Color.black);
     }
@@ -65,7 +57,7 @@ public class PanelHabitaciones extends javax.swing.JPanel {
 
         header.setBackground(new java.awt.Color(234, 234, 234));
 
-        tituloLB.setText(" Elige tu vuelo de salida");
+        tituloLB.setText(" Elije tu habitación");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -180,38 +172,23 @@ public class PanelHabitaciones extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void siguienteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBTNActionPerformed
-        System.out.println("CRANDO Y ENVIANDO RESERVA");
         Dashboard.ShowPanel(new PanelCierre());
-        
-        Habitacion habitacion = new Habitacion();
-        
-        
-        
-        //Guardo vuelo seleccionado para generar la reserva
+        //Guardo la habitacion seleccionada para generar la reserva
         ArmarReserva reservaSingleton = ArmarReserva.obtenerInstancia();
-        
-        reservaSingleton.setIdHabitacion((int)jTableHabitaciones.getValueAt(jTableHabitaciones.getSelectedRow(), 0));
-        //reservaSingleton.setIdHabitacion((int)jTableHabitaciones.getValueAt(0, 0));
-        //reservaSingleton.setIdHabitacion(22);
-        //
-        
-        //Enviar reserva a base de datos
-        Crud c = new Crud();
+        reservaSingleton.setIdHabitacion((int) jTableHabitaciones.getValueAt(jTableHabitaciones.getSelectedRow(), 0));
+
+        //Crear Reserva
         Reserva reserva = new Reserva();
-        System.out.println("\nASIGNANDO ID HABITACION y mas valores A RESERVA\n");
         reserva.setIdUsuario(reservaSingleton.getIdUsuario());
         reserva.setIdVuelo(reservaSingleton.getIdVuelo());
         reserva.setIdHabitacion(reservaSingleton.getIdHabitacion());
-        
         reserva.setFechaReserva(LocalDate.now());
         reserva.setIdReserva(000);
-        
-        System.out.println(reserva);////////////////////////////PREBA
-        
-        System.out.println();
-        
+
+        //CREAR reserva en base de datos
         try {
-            c.crearReserva(reserva);
+            ReservaDAO reservaCRUD = new ReservaDAOImp();
+            reservaCRUD.crear(reserva);
         } catch (SQLException ex) {
             System.out.println(" <<<ERROR ASIGNANDO ID HABITACION y mas valores");
             Logger.getLogger(PanelHabitaciones.class.getName()).log(Level.SEVERE, null, ex);

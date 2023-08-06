@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo.DAO.implementacion;
 
 import java.sql.PreparedStatement;
@@ -11,7 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Conexion;
-import modelo.Crud;
 import modelo.DAO.interfaces.VueloDAO;
 import modelo.Vuelo;
 
@@ -19,7 +14,8 @@ import modelo.Vuelo;
  *
  * @author LENOVO
  */
-public class VueloDAOImp extends  Conexion implements VueloDAO{
+public class VueloDAOImp extends Conexion implements VueloDAO {
+
     private PreparedStatement sentencia;
     boolean estadoOP;
 
@@ -182,5 +178,4 @@ public class VueloDAOImp extends  Conexion implements VueloDAO{
         return listaVuelos;
     }
 
-    
 }

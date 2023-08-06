@@ -95,7 +95,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="tituloLB">
               <Properties>
-                <Property name="text" type="java.lang.String" value=" Elige tu vuelo de salida"/>
+                <Property name="text" type="java.lang.String" value=" Elije tu habitaci&#xf3;n"/>
               </Properties>
             </Component>
           </SubComponents>

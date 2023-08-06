@@ -1,70 +1,74 @@
-
 package modelo;
+
 public class Usuario {
 //Atributos de usuario:
-	private int idUsuario;
-	private String nombre;
-	private String apellido;
-	private String correoElectronico;
-	private String contrasenia;
+
+    private int idUsuario;
+    private String nombre;
+    private String apellido;
+    private String correoElectronico;
+    private String contrasenia;
 //Constructor:
-	public Usuario() {
-		// TODO Auto-generated constructor stub
-	}
-	public Usuario(int idUsuario, String nombre, String apellido, String correoElectronico, String contrasenia) {
-		super();
-		this.idUsuario = idUsuario;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.correoElectronico = correoElectronico;
-		this.contrasenia = contrasenia;
-	}
+
+    public Usuario() {
+        // TODO Auto-generated constructor stub
+    }
+
+    public Usuario(int idUsuario, String nombre, String apellido, String correoElectronico, String contrasenia) {
+        super();
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correoElectronico = correoElectronico;
+        this.contrasenia = contrasenia;
+    }
 //Getters y Setters:
-	public int getIdUsuario() {
-		return idUsuario;
-	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
-	}
+    public int getIdUsuario() {
+        return idUsuario;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public String getApellido() {
-		return apellido;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+    public String getApellido() {
+        return apellido;
+    }
 
-	public String getCorreoElectronico() {
-		return correoElectronico;
-	}
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-	public void setCorreoElectronico(String correoElectronico) {
-		this.correoElectronico = correoElectronico;
-	}
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
 
-	public String getContrasenia() {
-		return contrasenia;
-	}
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
 
-	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
-	}
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
 //Imprimir informacion en formato:
-	@Override
-	public String toString() {
-		return "Usuario: [ ID:" + idUsuario + ", Nombre:" + nombre + ", Apellido:" + apellido + ", Correo Electronico:"
-				+ correoElectronico + ", ContraseÃ±a:" + contrasenia + " ]";
-	}
+
+    @Override
+    public String toString() {
+        return "Usuario: [ ID:" + idUsuario + ", Nombre:" + nombre + ", Apellido:" + apellido + ", Correo Electronico:"
+                + correoElectronico + ", ContraseÃ±a:" + contrasenia + " ]";
+    }
 
 }
-

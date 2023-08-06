@@ -6,6 +6,7 @@ import java.util.List;
 import java.time.LocalDate;
 import modelo.*;
 import modelo.DAO.implementacion.UsuarioDAOImp;
+import modelo.DAO.interfaces.UsuarioDAO;
 
 public class Main {
 
@@ -32,7 +33,7 @@ public class Main {
         //operacion.crearReserva(new Reserva(999, 11, 11, 11, LocalDate.now()));
         
         
-        UsuarioDAOImp operacion = new UsuarioDAOImp();
+        UsuarioDAO operacion = new UsuarioDAOImp();
         
         operacion.crear(new Usuario(999, "Carl", "Jonson", "cj@gmail.com", "12345"));
     }

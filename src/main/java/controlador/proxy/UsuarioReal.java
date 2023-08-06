@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador.proxy;
 
 /**
@@ -12,15 +8,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Conexion;
-import modelo.Crud;
 import modelo.DAO.implementacion.UsuarioDAOImp;
 import modelo.DAO.interfaces.UsuarioDAO;
 
@@ -45,7 +38,6 @@ public class UsuarioReal extends Conexion implements IUsuario {
     @Override
     public void registrarse(String nombre, String apellido, String correo, String contrasenia) {
         //Asi funciona un DAO con el CRUD:
-        Crud crud = new Crud();
         UsuarioDAO usuarioDAO = new UsuarioDAOImp();
         //---------------------------------------
         String nombreR = nombre;

@@ -95,7 +95,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="tituloLB">
               <Properties>
-                <Property name="text" type="java.lang.String" value=" Elige tu vuelo de salida"/>
+                <Property name="text" type="java.lang.String" value="Descubre el mundo con AEROLINEAS Q-AQP"/>
               </Properties>
             </Component>
           </SubComponents>

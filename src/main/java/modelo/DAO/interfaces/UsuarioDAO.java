@@ -4,6 +4,7 @@
  */
 package modelo.DAO.interfaces;
 
+import java.sql.SQLException;
 import java.util.List;
 import modelo.Usuario;
 
@@ -12,10 +13,10 @@ import modelo.Usuario;
  * @author LENOVO
  */
 public interface UsuarioDAO {
-    boolean crearUsuario(Usuario usuario);
-    Usuario leerUsuario(int id);
-    boolean actualizarUsuario(int id, Usuario usuario);
-    boolean eliminarUsuario(int id);
-    List<Usuario> obtenerUsuarios();
+    boolean crear(Usuario usuario) throws SQLException;
+    Usuario leer(int id) throws SQLException;
+    boolean actualizar(int id, Usuario usuario) throws SQLException;
+    boolean eliminar(int id) throws SQLException;
+    List<Usuario> listar() throws SQLException;
     
 }

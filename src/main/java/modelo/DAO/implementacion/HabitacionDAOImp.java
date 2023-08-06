@@ -4,8 +4,12 @@
  */
 package modelo.DAO.implementacion;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import modelo.Conexion;
 import modelo.Crud;
 import modelo.DAO.interfaces.HabitacionDAO;
 import modelo.Habitacion;
@@ -14,66 +18,163 @@ import modelo.Habitacion;
  *
  * @author LENOVO
  */
-public class HabitacionDAOImp implements HabitacionDAO{
-private Crud crud;
+public class HabitacionDAOImp extends Conexion implements HabitacionDAO {
 
-    public HabitacionDAOImp(Crud crud) {
-    this.crud = crud;
+    private PreparedStatement sentencia;
+    boolean estadoOP;
+
+    @Override
+    public boolean crear(Habitacion habitacion) throws SQLException {
+        String sql = null;
+        estadoOP = false;
+        connection = getConnection();
+
+        try {
+            connection.setAutoCommit(false);
+            sql = "INSERT INTO habitaciones(nombre_hotel, tipo_habitacion, precio_noche, disponibilidad, pais)"
+                    + "VALUES(?,?,?,?,?)";
+            sentencia = connection.prepareStatement(sql);
+            sentencia.setString(1, habitacion.getNombreHotel());
+            sentencia.setString(2, habitacion.getTipoHabitacion());
+            sentencia.setDouble(3, habitacion.getPrecioNoche());
+            sentencia.setBoolean(4, habitacion.isDisponibilidad());
+            sentencia.setString(5, habitacion.getPais());
+
+            estadoOP = sentencia.executeUpdate() > 0;
+            connection.commit();
+            sentencia.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            connection.rollback();
+            e.printStackTrace();
+        }
+        return estadoOP;
     }
 
     @Override
-    public boolean crearHabitacion(Habitacion habitacion) {
+    public Habitacion leer(String pais) throws SQLException {
+        ResultSet resultados = null;
+        Habitacion habitacion = new Habitacion();
+
+        String sql = null;
+        estadoOP = false;
+        connection = getConnection();
+
         try {
-            Crud crud = new Crud();
-            return crud.crearHabitacion(habitacion);
+            sql = "SELECT * FROM habitaciones WHERE pais = ?";
+            sentencia = connection.prepareStatement(sql);
+            sentencia.setString(6, pais);
+
+            resultados = sentencia.executeQuery();
+
+            if (resultados.next()) {
+                connection.setAutoCommit(false);
+
+                habitacion.setIdHabitacion(resultados.getInt(1));
+                habitacion.setNombreHotel(resultados.getString(2));
+                habitacion.setTipoHabitacion(resultados.getString(3));
+                habitacion.setPrecioNoche(resultados.getDouble(4));
+                habitacion.setDisponibilidad(resultados.getBoolean(5));
+                habitacion.setPais(resultados.getString(6));
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return habitacion;
     }
 
     @Override
-    public Habitacion leerHabitacion(String pais) {
+    public boolean actualizar(int id, Habitacion habitacion) throws SQLException {
+        String sql = null;
+        estadoOP = false;
+        connection = getConnection();
+
         try {
-            Crud crud = new Crud();
-            return crud.leerHabitacion(pais);
+            connection.setAutoCommit(false);
+            sql = "UPDATE habitaciones SET nombre_hotel=?, tipo_habitacion=?, precio_noche=?, disponibilidad=?, pais = ? WHERE id_habitacion =?";
+            sentencia = connection.prepareStatement(sql);
+
+            sentencia.setString(1, habitacion.getNombreHotel());
+            sentencia.setString(2, habitacion.getTipoHabitacion());
+            sentencia.setDouble(3, habitacion.getPrecioNoche());
+            sentencia.setBoolean(4, habitacion.isDisponibilidad());
+            sentencia.setString(5, habitacion.getPais());
+            sentencia.setInt(6, id);
+
         } catch (SQLException e) {
+            connection.rollback();
             e.printStackTrace();
-            return null;
         }
+
+        estadoOP = sentencia.executeUpdate() > 0;
+        connection.commit();
+        sentencia.close();
+        connection.close();
+
+        return true;
     }
 
     @Override
-    public boolean actualizarHabitacion(int id, Habitacion habitacion) {
+    public boolean eliminar(int id) throws SQLException {
+        String sql = null;
+        estadoOP = false;
+        connection = getConnection();
+
         try {
-            Crud crud = new Crud();
-            return crud.actualizarHabitacion(id, habitacion);
+            connection.setAutoCommit(false);
+            sql = "DELETE FROM habitaciones WHERE id_habitacion =?";
+            sentencia = connection.prepareStatement(sql);
+
+            sentencia.setInt(1, id);
         } catch (SQLException e) {
+            connection.rollback();
             e.printStackTrace();
-            return false;
         }
+
+        estadoOP = sentencia.executeUpdate() > 0;
+        connection.commit();
+        sentencia.close();
+        connection.close();
+
+        return estadoOP;
     }
 
     @Override
-    public boolean eliminarHabitacion(int id) {
+    public List<Habitacion> listar(String pais) throws SQLException {
+        ResultSet resultado = null;
+        List<Habitacion> listaHabitaciones = new ArrayList<>();
+
+        String sql = null;
+        estadoOP = false;
+        connection = getConnection();
+
         try {
-            Crud crud = new Crud();
-            return crud.eliminarHabitacion(id);
+            connection.setAutoCommit(false);
+            sql = "SELECT * FROM habitaciones WHERE pais = ?";
+
+            sentencia = connection.prepareStatement(sql);
+            sentencia.setString(1, pais);
+            resultado = sentencia.executeQuery();
+
+            while (resultado.next()) {
+                Habitacion habitacion = new Habitacion();
+
+                habitacion.setIdHabitacion(resultado.getInt(1));
+                habitacion.setNombreHotel(resultado.getString(2));
+                habitacion.setTipoHabitacion(resultado.getString(3));
+                habitacion.setPrecioNoche(resultado.getDouble(4));
+                habitacion.setDisponibilidad(resultado.getBoolean(5));
+                habitacion.setPais(resultado.getString(6));
+                listaHabitaciones.add(habitacion);
+
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+
+        return listaHabitaciones;
     }
 
-    @Override
-    public List<Habitacion> obtenerHabitaciones(String pais) {
-        try {
-            Crud crud = new Crud();
-            return crud.obtenerHabitaciones(pais);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    
 }

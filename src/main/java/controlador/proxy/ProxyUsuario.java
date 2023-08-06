@@ -1,37 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador.proxy;
 
-/**
- *
- * @author LENOVO
- */
+public class ProxyUsuario implements IUsuario {
 
-import conexion.Conexion;
+    private UsuarioReal usuarioReal;
 
-public class ProxyUsuario implements IUsuario{
-private UsuarioReal usuarioReal;
+    public ProxyUsuario() {
+        this.usuarioReal = new UsuarioReal();
+    }
 
-public ProxyUsuario() {
-    this.usuarioReal = new UsuarioReal(
-    		Conexion.getConnection());
-}
-	@Override
-	public void registrarse(String nombre, String apellido, String correo, String contrasenia) {
-		usuarioReal.registrarse(nombre,apellido,correo,contrasenia);
-	}
+    @Override
+    public void registrarse(String nombre, String apellido, String correo, String contrasenia) {
+        usuarioReal.registrarse(nombre, apellido, correo, contrasenia);
+    }
 
-	@Override
-	public boolean iniciarSesion(String correo, String contrasenia) {
-                return usuarioReal.iniciarSesion(correo, contrasenia);	
-	}
+    @Override
+    public boolean iniciarSesion(String correo, String contrasenia) {
+        return usuarioReal.iniciarSesion(correo, contrasenia);
+    }
 
-	@Override
-	public void cerrarSesion() {
-		usuarioReal.cerrarSesion();		
-	}
+    @Override
+    public void cerrarSesion() {
+        usuarioReal.cerrarSesion();
+    }
 
 }
-

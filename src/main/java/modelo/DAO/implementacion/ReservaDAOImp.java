@@ -1,12 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo.DAO.implementacion;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import modelo.Crud;
+import modelo.Conexion;
 import modelo.DAO.interfaces.ReservaDAO;
 import modelo.Reserva;
 
@@ -14,66 +14,158 @@ import modelo.Reserva;
  *
  * @author LENOVO
  */
-public class ReservaDAOImp implements ReservaDAO{
-private Crud crud;
+public class ReservaDAOImp extends Conexion implements ReservaDAO {
 
-    public ReservaDAOImp(Crud crud) {
-        this.crud = crud;
+    private PreparedStatement sentencia;
+    boolean estadoOP;
+
+    @Override
+    public boolean crear(Reserva reserva) throws SQLException {
+        String sql = null;
+        estadoOP = false;
+        connection = getConnection();
+
+        try {
+            connection.setAutoCommit(false);
+            sql = "INSERT INTO reservas(id_usuario, id_vuelo, id_habitacion, fecha_reserva)"
+                    + "VALUES(?,?,?,?)";
+            sentencia = connection.prepareStatement(sql);
+            sentencia.setInt(1, reserva.getIdUsuario());
+            sentencia.setInt(2, reserva.getIdVuelo());
+            sentencia.setInt(3, reserva.getIdHabitacion());
+            sentencia.setDate(4, java.sql.Date.valueOf(reserva.getFechaReserva()));
+
+            estadoOP = sentencia.executeUpdate() > 0;
+            connection.commit();
+            sentencia.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            connection.rollback();
+            e.printStackTrace();
+        }
+        return estadoOP;
     }
 
     @Override
-    public boolean crearReserva(Reserva reserva) {
+    public Reserva leer(int id) throws SQLException {
+        ResultSet resultados = null;
+        Reserva reserva = new Reserva();
+
+        String sql = null;
+        estadoOP = false;
+        connection = getConnection();
+
         try {
-            Crud crud = new Crud();
-            return crud.crearReserva(reserva);
+            sql = "SELECT * FROM reservas WHERE id_reserva = ?";
+            sentencia = connection.prepareStatement(sql);
+            sentencia.setInt(1, id);
+
+            resultados = sentencia.executeQuery();
+
+            if (resultados.next()) {
+                connection.setAutoCommit(false);
+
+                reserva.setIdReserva(resultados.getInt(1));
+                reserva.setIdUsuario(resultados.getInt(2));
+                reserva.setIdVuelo(resultados.getInt(3));
+                reserva.setIdHabitacion(resultados.getInt(4));
+                reserva.setFechaReserva(resultados.getObject(5, LocalDate.class));
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return reserva;
     }
 
     @Override
-    public Reserva leerReserva(int id) {
+    public boolean actualizar(int id, Reserva reserva) throws SQLException {
+        String sql = null;
+        estadoOP = false;
+        connection = getConnection();
+
         try {
-            Crud crud = new Crud();
-            return crud.leerReserva(id);
+            connection.setAutoCommit(false);
+            sql = "UPDATE reservas SET id_usuario=?, id_vuelo=?, id_habitacion=?, fecha_reserva=? WHERE id_reserva =?";
+            sentencia = connection.prepareStatement(sql);
+
+            sentencia.setInt(1, reserva.getIdUsuario());
+            sentencia.setInt(2, reserva.getIdVuelo());
+            sentencia.setInt(3, reserva.getIdHabitacion());
+            sentencia.setDate(4, java.sql.Date.valueOf(reserva.getFechaReserva()));
+            sentencia.setInt(5, id);
+
         } catch (SQLException e) {
+            connection.rollback();
             e.printStackTrace();
-            return null;
         }
+
+        estadoOP = sentencia.executeUpdate() > 0;
+        connection.commit();
+        sentencia.close();
+        connection.close();
+
+        return true;
     }
 
     @Override
-    public boolean actualizarReserva(int id, Reserva reserva) {
+    public boolean eliminar(int id) throws SQLException {
+        String sql = null;
+        estadoOP = false;
+        connection = getConnection();
+
         try {
-            Crud crud = new Crud();
-            return crud.actualizarReserva(id, reserva);
+            connection.setAutoCommit(false);
+            sql = "DELETE FROM reservas WHERE id_reserva =?";
+            sentencia = connection.prepareStatement(sql);
+
+            sentencia.setInt(1, id);
         } catch (SQLException e) {
+            connection.rollback();
             e.printStackTrace();
-            return false;
         }
+
+        estadoOP = sentencia.executeUpdate() > 0;
+        connection.commit();
+        sentencia.close();
+        connection.close();
+
+        return estadoOP;
     }
 
     @Override
-    public boolean eliminarReserva(int id) {
+    public List<Reserva> listar() throws SQLException {
+        ResultSet resultado = null;
+        List<Reserva> listaReservas = new ArrayList<>();
+
+        String sql = null;
+        estadoOP = false;
+        connection = getConnection();
+
         try {
-            Crud crud = new Crud();
-            return crud.eliminarReserva(id);
+            connection.setAutoCommit(false);
+            sql = "SELECT * FROM reservas";
+            sentencia = connection.prepareStatement(sql);
+            resultado = sentencia.executeQuery();
+
+            while (resultado.next()) {
+                Reserva reserva = new Reserva();
+
+                reserva.setIdReserva(resultado.getInt(1));
+                reserva.setIdUsuario(resultado.getInt(2));
+                reserva.setIdVuelo(resultado.getInt(3));
+                reserva.setIdHabitacion(resultado.getInt(4));
+                reserva.setFechaReserva(resultado.getObject(5, LocalDate.class));
+
+                listaReservas.add(reserva);
+
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+
+        return listaReservas;
     }
 
-    @Override
-    public List<Reserva> obtenerReservas() {
-        try {
-            Crud crud = new Crud();
-            return crud.obtenerReservas();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    
 }

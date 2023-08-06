@@ -1,20 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package modelo.DAO.interfaces;
 
+import java.sql.SQLException;
 import java.util.List;
 import modelo.Reserva;
 
-/**
- *
- * @author LENOVO
- */
 public interface ReservaDAO {
-    boolean crearReserva(Reserva reserva);
-    Reserva leerReserva(int id);
-    boolean actualizarReserva(int id, Reserva reserva);
-    boolean eliminarReserva(int id);
-    List<Reserva> obtenerReservas();
+
+    boolean crear(Reserva reserva) throws SQLException;
+
+    Reserva leer(int id) throws SQLException;
+
+    boolean actualizar(int id, Reserva reserva) throws SQLException;
+
+    boolean eliminar(int id) throws SQLException;
+
+    List<Reserva> listar() throws SQLException;
 }

@@ -1,5 +1,7 @@
 package vista;
 
+import controlador.Reserva.Registro;
+import controlador.Reserva.RegistroBuilder;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -33,8 +35,23 @@ public class Main {
         //operacion.crearReserva(new Reserva(999, 11, 11, 11, LocalDate.now()));
         
         
-        UsuarioDAO operacion = new UsuarioDAOImp();
+        //UsuarioDAO operacion = new UsuarioDAOImp();
         
-        operacion.crear(new Usuario(999, "Carl", "Jonson", "cj@gmail.com", "12345"));
+        //operacion.crear(new Usuario(999, "Carl", "Jonson", "cj@gmail.com", "12345"));
+        
+        Registro registro = new RegistroBuilder()
+                .buildIdReserva(99)
+                .buildIdUsuario(88)
+                .buildNombreUsuario("RAUL")
+                .buildApellidoUsuario("Sanchez")
+                .buildPrecioVuelo(1234)
+                .buildPrecioHabitacion(232)
+                .build();
+        
+        Registro registro2 = new RegistroBuilder().buildIdVuelo(777).build();
+        
+        System.out.println(registro2);
+        
+    
     }
 }

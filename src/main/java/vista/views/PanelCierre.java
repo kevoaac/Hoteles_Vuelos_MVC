@@ -4,6 +4,9 @@
  */
 package vista.views;
 
+import controlador.Reserva.Logica;
+import controlador.Reserva.Registro;
+import controlador.Reserva.RegistroBuilder;
 import java.awt.Color;
 
 /**
@@ -23,6 +26,15 @@ public class PanelCierre extends javax.swing.JPanel {
     private void InitStyles() {
         titulo3LB.putClientProperty("FlatLaf.style", "font: 200% bold $h1.regular.font");
         titulo3LB.setForeground(Color.black);
+        
+        Registro registro = new RegistroBuilder().build();
+        System.out.println(registro);
+        
+        
+           h3_cliente.setText("Cliente:           " + registro.getNombreUsuario() + " " + registro.getApellidoUsuario());
+             h3_vuelo.setText("Vuelo:             "+ registro.getPrecioVuelo());
+        h3_habitacion.setText("Habitacion:        "+ registro.getPrecioHabitacion());
+             h3_total.setText("Total + IVA (12%): " + Logica.calcularPrecioTotal());
     }
 
     /**
@@ -38,6 +50,12 @@ public class PanelCierre extends javax.swing.JPanel {
         tituloLB = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
         titulo3LB = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        h2 = new javax.swing.JLabel();
+        h3_cliente = new javax.swing.JLabel();
+        h3_vuelo = new javax.swing.JLabel();
+        h3_habitacion = new javax.swing.JLabel();
+        h3_total = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 73, 144));
         setMinimumSize(new java.awt.Dimension(883, 650));
@@ -48,6 +66,7 @@ public class PanelCierre extends javax.swing.JPanel {
 
         header.setBackground(new java.awt.Color(234, 234, 234));
 
+        tituloLB.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         tituloLB.setText("Descubre el mundo con AEROLINEAS Q-AQP");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
@@ -69,21 +88,81 @@ public class PanelCierre extends javax.swing.JPanel {
 
         body.setBackground(new java.awt.Color(0, 73, 144));
 
+        titulo3LB.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        titulo3LB.setForeground(new java.awt.Color(255, 255, 255));
         titulo3LB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo3LB.setText("GRACIAS POR ELEGIRNOS");
+
+        jPanel1.setBackground(new java.awt.Color(248, 249, 250));
+
+        h2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        h2.setForeground(new java.awt.Color(100, 100, 100));
+        h2.setText("Resumen");
+
+        h3_cliente.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        h3_cliente.setForeground(new java.awt.Color(100, 100, 100));
+        h3_cliente.setText("Cliente: ");
+
+        h3_vuelo.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        h3_vuelo.setForeground(new java.awt.Color(100, 100, 100));
+        h3_vuelo.setText("Vuelo:");
+
+        h3_habitacion.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        h3_habitacion.setForeground(new java.awt.Color(100, 100, 100));
+        h3_habitacion.setText("Habitacion:");
+
+        h3_total.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        h3_total.setForeground(new java.awt.Color(100, 100, 100));
+        h3_total.setText("Total:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(h3_total)
+                    .addComponent(h3_vuelo)
+                    .addComponent(h3_habitacion)
+                    .addComponent(h3_cliente)
+                    .addComponent(h2))
+                .addContainerGap(300, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(h2)
+                .addGap(18, 18, 18)
+                .addComponent(h3_cliente)
+                .addGap(18, 18, 18)
+                .addComponent(h3_habitacion)
+                .addGap(18, 18, 18)
+                .addComponent(h3_vuelo)
+                .addGap(18, 18, 18)
+                .addComponent(h3_total)
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titulo3LB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titulo3LB, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE)
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(229, 229, 229)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(265, 265, 265)
+                .addGap(24, 24, 24)
                 .addComponent(titulo3LB)
-                .addContainerGap(319, Short.MAX_VALUE))
+                .addGap(145, 145, 145)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(177, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
@@ -117,7 +196,13 @@ public class PanelCierre extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JPanel body;
+    private javax.swing.JLabel h2;
+    private javax.swing.JLabel h3_cliente;
+    private javax.swing.JLabel h3_habitacion;
+    private javax.swing.JLabel h3_total;
+    private javax.swing.JLabel h3_vuelo;
     private javax.swing.JPanel header;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel titulo3LB;
     private javax.swing.JLabel tituloLB;
     // End of variables declaration//GEN-END:variables

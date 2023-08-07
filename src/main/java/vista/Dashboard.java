@@ -92,6 +92,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         menu.setBackground(new java.awt.Color(255, 255, 255));
 
+        menuTituloLB.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         menuTituloLB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         menuTituloLB.setText("RESERVA TU VUELO");
         menuTituloLB.setToolTipText("");
@@ -104,8 +105,10 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        origenLB.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         origenLB.setText("Origen");
 
+        destinoLB.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         destinoLB.setText("Destino");
 
         destinoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ecuador", "España", "Argentina", "Brasil", "Canadá", "México", "Japón", "Estados Unidos", "China", "Colombia" }));
@@ -159,7 +162,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(destinoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
                 .addComponent(buscarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(123, 123, 123))
         );

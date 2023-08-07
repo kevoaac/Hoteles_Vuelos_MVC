@@ -1,6 +1,7 @@
 package vista.views;
 
-import controlador.Logica.ArmarReserva;
+import controlador.Reserva.Logica;
+import controlador.Reserva.Registro;
 import java.awt.Color;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -50,6 +51,7 @@ public class PanelVuelos extends javax.swing.JPanel {
 
         header.setBackground(new java.awt.Color(234, 234, 234));
 
+        tituloLB.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         tituloLB.setText(" Elige tu vuelo de salida");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
@@ -76,14 +78,14 @@ public class PanelVuelos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Origen", "Destino", "Fecha de salida", "Fecha de llegada"
+                "ID", "Origen", "Destino", "Fecha de salida", "Fecha de llegada", "Precio"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -129,7 +131,7 @@ public class PanelVuelos extends javax.swing.JPanel {
             .addGroup(bodyLayout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(siguienteBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -168,12 +170,12 @@ public class PanelVuelos extends javax.swing.JPanel {
         Dashboard.ShowPanel(new PanelHabitaciones());
         String pais = (String) jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 2);
         DefaultTableModel model = (DefaultTableModel) PanelHabitaciones.jTableHabitaciones.getModel();
-
+        
+        int idVuelo = (int) jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0);
+        double precio = (double) jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 5);
         //Guardo vuelo seleccionado para generar la reserva
-        ArmarReserva reservaSingleton = ArmarReserva.obtenerInstancia();
-        reservaSingleton.setIdVuelo((int) jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0));
-
-        //Mostrar habitaciones en la tabla
+        Logica.asignarIdVuelo(idVuelo, precio);
+        
         try {
             HabitacionDAO habitacionesCRUD = new HabitacionDAOImp();
             habitacionesCRUD.listar(pais).forEach(x -> model.addRow(new Object[]{x.getIdHabitacion(), x.getNombreHotel(), x.getTipoHabitacion(), x.getPrecioNoche()}));

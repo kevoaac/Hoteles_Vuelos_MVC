@@ -82,7 +82,7 @@
             <Container class="javax.swing.JPanel" name="panelDorado">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="c6" red="ff" type="rgb"/>
+                  <Color blue="f8" green="ff" red="f6" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -242,7 +242,7 @@
                       <Font name="Roboto Medium" size="28" style="3"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="c6" red="ff" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Registrarse"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -256,7 +256,7 @@
                 <Component class="javax.swing.JButton" name="back">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="c6" red="ff" type="rgb"/>
+                      <Color blue="f8" green="ff" red="f6" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Medium" size="28" style="3"/>
@@ -278,7 +278,7 @@
                 <Component class="javax.swing.JTextField" name="Inombre">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="c6" red="ff" type="rgb"/>
+                      <Color blue="f8" green="ff" red="f6" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="16" style="2"/>
@@ -298,7 +298,7 @@
                 <Component class="javax.swing.JTextField" name="Icorreo">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="c6" red="ff" type="rgb"/>
+                      <Color blue="f8" green="ff" red="f6" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="16" style="2"/>
@@ -318,7 +318,7 @@
                 <Component class="javax.swing.JTextField" name="Iapellido">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="c6" red="ff" type="rgb"/>
+                      <Color blue="f8" green="ff" red="f6" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="16" style="2"/>
@@ -375,7 +375,7 @@
                 <Component class="javax.swing.JPasswordField" name="Inpass">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="c6" red="ff" type="rgb"/>
+                      <Color blue="f8" green="ff" red="f6" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="16" style="2"/>

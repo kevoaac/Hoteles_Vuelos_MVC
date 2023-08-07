@@ -56,7 +56,7 @@ public class Register extends javax.swing.JFrame {
 
         panelAzul.setBackground(new java.awt.Color(0, 0, 51));
 
-        panelDorado.setBackground(new java.awt.Color(255, 198, 0));
+        panelDorado.setBackground(new java.awt.Color(246, 255, 248));
 
         LAzul.setIcon(new javax.swing.ImageIcon("C:\\Users\\kevin\\Documents\\workspace\\patrones-de-disenio\\Hoteles_Vuelos\\src\\main\\java\\vista\\recursos\\images\\LogoAzul.png")); // NOI18N
 
@@ -74,7 +74,7 @@ public class Register extends javax.swing.JFrame {
 
         register.setBackground(new java.awt.Color(0, 0, 0));
         register.setFont(new java.awt.Font("Roboto Medium", 3, 28)); // NOI18N
-        register.setForeground(new java.awt.Color(255, 198, 0));
+        register.setForeground(new java.awt.Color(255, 255, 255));
         register.setText("Registrarse");
         register.setBorder(null);
         register.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -83,7 +83,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        back.setBackground(new java.awt.Color(255, 198, 0));
+        back.setBackground(new java.awt.Color(246, 255, 248));
         back.setFont(new java.awt.Font("Roboto Medium", 3, 28)); // NOI18N
         back.setForeground(new java.awt.Color(255, 198, 0));
         back.setIcon(new javax.swing.ImageIcon("C:\\Users\\kevin\\Documents\\workspace\\patrones-de-disenio\\Hoteles_Vuelos\\src\\main\\java\\vista\\recursos\\images\\back.png")); // NOI18N
@@ -94,7 +94,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        Inombre.setBackground(new java.awt.Color(255, 198, 0));
+        Inombre.setBackground(new java.awt.Color(246, 255, 248));
         Inombre.setFont(new java.awt.Font("Roboto Light", 2, 16)); // NOI18N
         Inombre.setForeground(new java.awt.Color(153, 153, 153));
         Inombre.setText("Ingrese su nombre de pila");
@@ -105,7 +105,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        Icorreo.setBackground(new java.awt.Color(255, 198, 0));
+        Icorreo.setBackground(new java.awt.Color(246, 255, 248));
         Icorreo.setFont(new java.awt.Font("Roboto Light", 2, 16)); // NOI18N
         Icorreo.setForeground(new java.awt.Color(153, 153, 153));
         Icorreo.setText("Ingrese su correo");
@@ -116,7 +116,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        Iapellido.setBackground(new java.awt.Color(255, 198, 0));
+        Iapellido.setBackground(new java.awt.Color(246, 255, 248));
         Iapellido.setFont(new java.awt.Font("Roboto Light", 2, 16)); // NOI18N
         Iapellido.setForeground(new java.awt.Color(153, 153, 153));
         Iapellido.setText("Ingrese su apellido");
@@ -134,7 +134,7 @@ public class Register extends javax.swing.JFrame {
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
-        Inpass.setBackground(new java.awt.Color(255, 198, 0));
+        Inpass.setBackground(new java.awt.Color(246, 255, 248));
         Inpass.setFont(new java.awt.Font("Roboto Light", 2, 16)); // NOI18N
         Inpass.setForeground(new java.awt.Color(153, 153, 153));
         Inpass.setText("****************");

@@ -1,6 +1,7 @@
 package vista.views;
 
-import controlador.Logica.ArmarReserva;
+import controlador.Reserva.Logica;
+import controlador.Reserva.Registro;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -57,6 +58,7 @@ public class PanelHabitaciones extends javax.swing.JPanel {
 
         header.setBackground(new java.awt.Color(234, 234, 234));
 
+        tituloLB.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         tituloLB.setText(" Elije tu habitación");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
@@ -87,7 +89,7 @@ public class PanelHabitaciones extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
                 true, false, false, false
@@ -133,7 +135,7 @@ public class PanelHabitaciones extends javax.swing.JPanel {
             .addGroup(bodyLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
                         .addComponent(siguienteBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,26 +175,10 @@ public class PanelHabitaciones extends javax.swing.JPanel {
 
     private void siguienteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBTNActionPerformed
         Dashboard.ShowPanel(new PanelCierre());
-        //Guardo la habitacion seleccionada para generar la reserva
-        ArmarReserva reservaSingleton = ArmarReserva.obtenerInstancia();
-        reservaSingleton.setIdHabitacion((int) jTableHabitaciones.getValueAt(jTableHabitaciones.getSelectedRow(), 0));
-
-        //Crear Reserva
-        Reserva reserva = new Reserva();
-        reserva.setIdUsuario(reservaSingleton.getIdUsuario());
-        reserva.setIdVuelo(reservaSingleton.getIdVuelo());
-        reserva.setIdHabitacion(reservaSingleton.getIdHabitacion());
-        reserva.setFechaReserva(LocalDate.now());
-        reserva.setIdReserva(000);
-
-        //CREAR reserva en base de datos
-        try {
-            ReservaDAO reservaCRUD = new ReservaDAOImp();
-            reservaCRUD.crear(reserva);
-        } catch (SQLException ex) {
-            System.out.println(" <<<ERROR ASIGNANDO ID HABITACION y mas valores");
-            Logger.getLogger(PanelHabitaciones.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        int idHabitacion = (int) jTableHabitaciones.getValueAt(jTableHabitaciones.getSelectedRow(), 0);
+        double precioHabitacion = (double) jTableHabitaciones.getValueAt(jTableHabitaciones.getSelectedRow(), 3);
+        Logica.asignarIdHabitacion(idHabitacion, precioHabitacion);
+        Logica.crearReserva();
     }//GEN-LAST:event_siguienteBTNActionPerformed
 
 

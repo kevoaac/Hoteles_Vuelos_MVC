@@ -48,6 +48,7 @@ public class PanelBienvenida extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(11, 35, 67));
 
+        sloganLB.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         sloganLB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sloganLB.setText("DISFRUTRA DE LOS MEJORES LUGARES Y HOSPEDAJE");
 
@@ -89,7 +90,7 @@ public class PanelBienvenida extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

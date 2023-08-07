@@ -174,11 +174,13 @@ public class PanelHabitaciones extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void siguienteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBTNActionPerformed
-        Dashboard.ShowPanel(new PanelCierre());
         int idHabitacion = (int) jTableHabitaciones.getValueAt(jTableHabitaciones.getSelectedRow(), 0);
         double precioHabitacion = (double) jTableHabitaciones.getValueAt(jTableHabitaciones.getSelectedRow(), 3);
         Logica.asignarIdHabitacion(idHabitacion, precioHabitacion);
         Logica.crearReserva();
+
+        Dashboard.ShowPanel(new PanelCierre());
+
     }//GEN-LAST:event_siguienteBTNActionPerformed
 
 

@@ -49,10 +49,10 @@ public class Logica {
 
     }
 
-    public static void asignarIdHabitacion(int idHabitacion, double preciohabitacion) {
+    public static void asignarIdHabitacion(int idHabitacion, double precioHab) {
         Registro reservaSingleton = new RegistroBuilder()
                 .buildIdHabitacion(idHabitacion)
-                .buildPrecioHabitacion(preciohabitacion)
+                .buildPrecioHabitacion(precioHab)
                 .build();
 
     }
@@ -68,7 +68,6 @@ public class Logica {
         reserva.setFechaReserva(LocalDate.now());
         reserva.setIdReserva(0);//se genera automaticamente
         
-        System.out.println(registro);
         
         //CREAR reserva en base de datos
         try {

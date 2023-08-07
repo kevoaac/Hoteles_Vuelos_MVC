@@ -16,9 +16,10 @@ public class Registro {
 
     private int idVuelo;
     private int idHabitacion;
+    private double precioHabitacion;
+
     private LocalDate fechaReserva;
     private double precioVuelo;
-    private double precioHabitacion;
     
     //Singleton---------------------------------------------------------------------
     private static Registro instancia = new Registro();
